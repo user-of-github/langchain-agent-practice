@@ -1,4 +1,4 @@
 export interface GenerateBody {
-    prompt: string;
-    thread_id?: string;
+  prompt: string;
+  thread_id?: string;
 }

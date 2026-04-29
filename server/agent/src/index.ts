@@ -2,8 +2,8 @@ import Fastify, { type FastifyInstance} from 'fastify';
 import cors from '@fastify/cors';
 import {Agent, configureAgent} from './agent/agent';
 import {type ReactAgent} from 'langchain';
-import * as repl from "node:repl";
-import {GenerateBody} from "./types";
+import * as repl from 'node:repl';
+import {GenerateBody} from './types';
 
 const port = Number(process.env.PORT || 3002);
 
@@ -37,9 +37,9 @@ class Server {
       const result = await this.agent.invoke({
         messages: [{
           role: 'user',
-          content: 'What\'s the weather in Tokyo ?'
+          content: prompt
         }]
-      }, { configurable: { thread_id: 42 }});
+      }, { configurable: { thread_id: thread_id ? thread_id : undefined }});
 
       return result.messages.at(-1)?.content;
     });

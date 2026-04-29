@@ -2,7 +2,7 @@ import {createAgent, ReactAgent} from 'langchain';
 import {MemorySaver} from '@langchain/langgraph';
 import {ChatOpenRouter} from '@langchain/openrouter';
 import {type BaseChatModel} from '@langchain/core/language_models/chat_models';
-import {weatherTool} from "./tools";
+import {jsExecutor, weatherTool} from './tools';
 
 
 export const configureAgent = (): ReactAgent => {
@@ -15,7 +15,7 @@ export const configureAgent = (): ReactAgent => {
 
   return createAgent({
     model: llm,
-    tools: [weatherTool],
+    tools: [weatherTool, jsExecutor],
     checkpointer: memory
   });
 };
