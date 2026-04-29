@@ -3,6 +3,7 @@ import cors from '@fastify/cors';
 import {Agent, configureAgent} from './agent/agent';
 import {type ReactAgent} from 'langchain';
 import * as repl from "node:repl";
+import {GenerateBody} from "./types";
 
 const port = Number(process.env.PORT || 3002);
 
@@ -30,9 +31,9 @@ class Server {
     const fastify = Fastify({ logger: true });
     fastify.register(cors, { origin: '*' });
 
-    fastify.post('/generate', async (request, reply) => {
+    fastify.post<{ Body: GenerateBody }>('/generate', async (request, reply) => {
       const { prompt, thread_id } = request.body;
-      
+
       const result = await this.agent.invoke({
         messages: [{
           role: 'user',
