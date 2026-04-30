@@ -5,8 +5,12 @@ export const evalWithCapturingOutput = async (code: string): Promise<{ stdout: s
   const logs: string[] = [];
   const errors: string[] = [];
 
+  console.log(code)
+
   console.log = (...args: string[])=> logs.push(args.join(' '));
   console.error = (...args: string[])=> errors.push(args.join(' '));
+
+
 
   try {
     const result = await eval(code);
