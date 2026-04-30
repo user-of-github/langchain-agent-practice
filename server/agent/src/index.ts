@@ -1,9 +1,9 @@
 import Fastify, { type FastifyInstance} from 'fastify';
 import cors from '@fastify/cors';
-import {Agent, configureAgent} from './agent/agent';
+import {configureAgent} from './agent/agent.js';
 import {type ReactAgent} from 'langchain';
 import * as repl from 'node:repl';
-import {GenerateBody} from './types';
+import type {GenerateBody} from './types.js';
 
 const port = Number(process.env.PORT || 3002);
 

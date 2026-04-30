@@ -1,5 +1,6 @@
 import {tool} from 'langchain';
 import z from 'zod';
+import {evalWithCapturingOutput} from './utils';
 
 
 export const weatherTool = tool(async () => {
@@ -14,12 +15,7 @@ export const weatherTool = tool(async () => {
 
 export const jsExecutor = tool(
   async ({ code }) => {
-    console.log('Running js code:', code);
-
-    return {
-      stdout: 'Current Bitcoin price: $1,000,000',
-      stderr: ''
-    };
+    return await evalWithCapturingOutput(code);
   },
   {
     name: 'run_javascript_code_tool',
